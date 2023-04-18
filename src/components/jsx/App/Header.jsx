@@ -6,6 +6,7 @@ import { BiHome } from "react-icons/bi";
 import { RiContactsBook2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import "../../css/App/HeaderStyles.css";
+import Logo from "../../../assets/logo.png";
 
 const Header = () => {
   const [click, setClick] = useState(false);
@@ -19,6 +20,7 @@ const Header = () => {
           <div className="desk_top_section_header">
             <div className="desk_top_left_section_header">
               <h2>SCALE</h2>
+              {/* <img src={Logo} alt="logo" /> */}
               <div className="desk_search_container_header">
                 <input type="text" placeholder="Search..." />
                 <div className="search_icon_container_header">

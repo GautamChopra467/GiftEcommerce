@@ -18,12 +18,13 @@
   grid-gap: 8px;
 }
 
-.sub_header_paymentbanner1 p {
+.sub_header_paymentbanner1 a {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-size: 12px;
   line-height: 18px;
   color: var(--black-color);
+  text-decoration: none;
 }
 
 .greater_icon_paymentbanner1 {

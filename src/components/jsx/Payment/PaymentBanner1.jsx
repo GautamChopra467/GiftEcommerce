@@ -4,14 +4,15 @@ import "../../css/Payment/PaymentBanner1Styles.css";
 import { CgTrash } from "react-icons/cg";
 import Payment1 from "../../../assets/payment1.png";
 import Payment2 from "../../../assets/payment2.png";
+import { Link } from "react-router-dom";
 
 const PaymentBanner1 = () => {
   return (
     <div className="main_container_paymentbanner1">
       <div className="sub_header_paymentbanner1">
-        <p>Home</p>
-        <TbMathGreater className="greater_icon_paymentbanner1" />
-        <p>Payment Portal</p>
+      <Link to="/">Home</Link>
+          <TbMathGreater className="greater_icon_aboutbanner1" />
+          <Link to="/paymentportal1">Payment Portal</Link>
       </div>
 
       <div className="main_box_paymentbanner1">

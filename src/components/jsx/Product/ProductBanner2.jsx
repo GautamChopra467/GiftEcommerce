@@ -2,6 +2,7 @@ import React from "react";
 import { TbMathGreater } from "react-icons/tb";
 import "../../css/Product/ProductBanner1Styles.css";
 import ProductCard2 from "./ProductCard2.jsx";
+import { Link } from "react-router-dom";
 import Product1 from "../../../assets/products/products1.png";
 import Product2 from "../../../assets/products/products2.png";
 import Product3 from "../../../assets/products/products3.png";
@@ -106,9 +107,9 @@ const ProductBanner2 = () => {
   return (
     <div className="main_container_productbanner1">
       <div className="sub_header_productbanner1">
-        <p>Home</p>
-        <TbMathGreater className="greater_icon_productbanner1" />
-        <p>Best Selling for Today</p>
+      <Link to="/">Home</Link>
+          <TbMathGreater className="greater_icon_aboutbanner1" />
+          <Link to="/products">Best Selling for Today</Link>
       </div>
 
       <div className="categories_main_container_productbanner1">

@@ -15,6 +15,7 @@ import Product3 from "../../../assets/products/product3.png";
 import Product4 from "../../../assets/products/product4.png";
 import Product5 from "../../../assets/products/product5.png";
 import ProductCard1 from "./ProductCard1.jsx"
+import { Link } from "react-router-dom";
 
 const ProductBanner1 = () => {
 const products = [
@@ -53,9 +54,9 @@ const products = [
   return (
     <div className="main_container_productbanner1">
       <div className="sub_header_productbanner1">
-        <p>Home</p>
-        <TbMathGreater className="greater_icon_productbanner1" />
-        <p>Best Selling for Today</p>
+      <Link to="/">Home</Link>
+          <TbMathGreater className="greater_icon_aboutbanner1" />
+          <Link to="/product">Best Selling for Today</Link>
       </div>
 
       <div className="categories_main_container_productbanner1">

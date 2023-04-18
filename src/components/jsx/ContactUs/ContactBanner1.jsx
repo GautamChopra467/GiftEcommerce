@@ -1,15 +1,16 @@
 import React from "react";
 import { TbMathGreater } from "react-icons/tb";
 import "../../css/AboutUs/AboutBanner1Styles.css";
+import { Link } from "react-router-dom";
 
 const ContactBanner1 = () => {
   return (
     <div>
       <div className="main_container_aboutbanner1">
         <div className="top_section_aboutbanner1">
-          <p>Home</p>
+        <Link to="/">Home</Link>
           <TbMathGreater className="greater_icon_aboutbanner1" />
-          <p>Contact Us</p>
+          <Link to="/contactus">Contact Us</Link>
         </div>
 
         <div className="middle_section_aboutbanner1">

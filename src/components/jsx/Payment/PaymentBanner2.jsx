@@ -8,14 +8,15 @@ import { HiOutlinePencil } from "react-icons/hi";
 import Pay1 from "../../../assets/pay1.png";
 import Pay2 from "../../../assets/pay2.png";
 import Pay3 from "../../../assets/pay3.png";
+import { Link } from "react-router-dom";
 
 const PaymentBanner2 = () => {
   return (
     <div className="main_container_paymentbanner1">
       <div className="sub_header_paymentbanner1">
-        <p>Home</p>
-        <TbMathGreater className="greater_icon_paymentbanner1" />
-        <p>Payment Portal</p>
+      <Link to="/">Home</Link>
+          <TbMathGreater className="greater_icon_aboutbanner1" />
+          <Link to="/paymentportal2">Payment Portal</Link>
       </div>
 
       <div className="main_box_paymentbanner1">

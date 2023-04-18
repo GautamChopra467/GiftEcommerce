@@ -10,15 +10,16 @@ import About7 from "../../../assets/about7.png";
 import About8 from "../../../assets/about8.png";
 import About9 from "../../../assets/about9.png";
 import "../../css/AboutUs/AboutBanner1Styles.css";
+import { Link } from "react-router-dom";
 
 const AboutBanner1 = () => {
   return (
     <div>
       <div className="main_container_aboutbanner1">
         <div className="top_section_aboutbanner1">
-          <p>Home</p>
+          <Link to="/">Home</Link>
           <TbMathGreater className="greater_icon_aboutbanner1" />
-          <p>About Us</p>
+          <Link to="/aboutus">About Us</Link>
         </div>
 
         <div className="middle_section_aboutbanner1">
