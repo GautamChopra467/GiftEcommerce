@@ -39,10 +39,10 @@ const Header = () => {
 
           <div className="desk_bottom_section_header">
             <div className="desk_bottom_left_section_header">
-              <Link to="/">Birthday</Link>
-              <Link to="/">Anniversary</Link>
-              <Link to="/">Cakes</Link>
-              <Link to="/">Flowers</Link>
+              <Link to="/paymentportal1">Birthday</Link>
+              <Link to="/paymentportal2">Anniversary</Link>
+              <Link to="/product">Cakes</Link>
+              <Link to="/products">Flowers</Link>
               <Link to="/">Personalised</Link>
               <Link to="/">Gifts</Link>
             </div>
@@ -122,16 +122,16 @@ const Header = () => {
             </div>
 
             <div className="side_bottom_section_header">
-              <Link to="/" className="side_bottom_box_header">
+              <Link to="/paymentportal1" className="side_bottom_box_header">
                 <p>Birthday</p>
               </Link>
-              <Link to="/" className="side_bottom_box_header">
+              <Link to="/paymentportal2" className="side_bottom_box_header">
                 <p>Anniversary</p>
               </Link>
-              <Link to="/" className="side_bottom_box_header">
+              <Link to="/product" className="side_bottom_box_header">
                 <p>Cakes</p>
               </Link>
-              <Link to="/" className="side_bottom_box_header">
+              <Link to="/products" className="side_bottom_box_header">
                 <p>Flowers</p>
               </Link>
               <Link to="/" className="side_bottom_box_header">
