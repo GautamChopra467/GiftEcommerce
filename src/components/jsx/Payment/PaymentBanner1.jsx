@@ -37,7 +37,7 @@ const PaymentBanner1 = () => {
               <div className="number_section_paymentbanner1">
                 <p>2</p>
               </div>
-              <h4>Order & Delivery Deatails</h4>
+              <h4>Order & Delivery Details</h4>
             </div>
           </div>
 
@@ -132,7 +132,7 @@ const PaymentBanner1 = () => {
           <div className="form_main_container_paymentbanner1">
             <div className="form_container_paymentbanner1">
               <div className="form_top_section_paymentbanner1">
-                <h4>Order & Delivery Deatails</h4>
+                <h4>Order & Delivery Details</h4>
               </div>
 
               <div className="form_middle_section_paymentbanner1">

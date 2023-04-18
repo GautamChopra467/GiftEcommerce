@@ -41,7 +41,7 @@ const PaymentBanner2 = () => {
               <div className="number_section_paymentbanner1">
                 <p>2</p>
               </div>
-              <h4>Order & Delivery Deatails</h4>
+              <h4>Order & Delivery Details</h4>
             </div>
           </div>
 
