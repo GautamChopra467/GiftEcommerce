@@ -25,6 +25,7 @@
   font-size: 12px;
   line-height: 18px;
   color: var(--black-color);
+  text-overflow:ellipsis;
 }
 
 .greater_icon_aboutbanner1 {

@@ -7,11 +7,38 @@ import { RiContactsBook2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import "../../css/App/HeaderStyles.css";
 import Logo from "../../../assets/logo.png";
+import ProductCard1 from "../Product/ProductCard1";
 
-const Header = () => {
+import Product1 from "../../../assets/products/product1.png";
+import Product2 from "../../../assets/products/product2.png";
+import Product3 from "../../../assets/products/product3.png";
+import Product4 from "../../../assets/products/product4.png";
+import Product5 from "../../../assets/products/product5.png";
+import jsonFile from "../../../dummyData.json"
+import ProductCard4 from "../Product/ProductCad4";
+
+const Header = ({ show, setShow }) => {
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
 
+
+ 
+const [products, setProducts] = useState([])
+// let products = [];
+
+const filterItems = (category) => {
+  console.log("Hello")
+  handleClick()
+  setShow(true);
+  const data = jsonFile.Products;
+  let products2 = data.filter(function (product) {
+    return product.category === category;
+  })
+  setProducts(products2)
+  console.log(products2)
+}
+
+// filterItems()
   return (
     <div className="main_container_header">
       <div className="main_box_header">
@@ -33,27 +60,27 @@ const Header = () => {
             </div>
 
             <div className="desk_top_right_section_header">
-              <Link to="/">Home</Link>
-              <Link to="/aboutus">About us</Link>
-              <Link to="/contactus">Contact</Link>
+              <Link to="/" onClick={() => setShow(false)}>Home</Link>
+              <Link to="/aboutus" onClick={() => setShow(false)}>About Us</Link>
+              <Link to="/contactus" onClick={() => setShow(false)}>Contact</Link>
             </div>
           </div>
 
           <div className="desk_bottom_section_header">
             <div className="desk_bottom_left_section_header">
-              <Link to="/paymentportal1">Birthday</Link>
-              <Link to="/paymentportal2">Anniversary</Link>
-              <Link to="/product">Cakes</Link>
-              <Link to="/products">Flowers</Link>
-              <Link to="/">Personalised</Link>
-              <Link to="/">Gifts</Link>
+              <p onClick={() => filterItems("birthday")}>Birthday</p>
+              <p onClick={() => filterItems("anniversary")}>Anniversary</p>
+              <p onClick={() => filterItems("cake")}>Cakes</p>
+              <p onClick={() => filterItems("flower")}>Flowers</p>
+              <p onClick={() => filterItems("personalised")}>Personalised</p>
+              <p onClick={() => filterItems("gift")}>Gifts</p>
             </div>
 
             <div className="desk_bottom_right_section_header">
-              <div className="desk_cart_container_header">
+              <Link to="/paymentportal1" className="desk_cart_container_header">
                 <AiOutlineShoppingCart className="desk_cart_icon_header" />
                 <p>Cart</p>
-              </div>
+              </Link>
               <div className="desk_account_container_header">
                 <FaRegUserCircle className="desk_account_icon_header" />
                 <p>Account</p>
@@ -72,10 +99,10 @@ const Header = () => {
               </div>
 
               <div className="mob_top_right_section_header">
-                <div className="mob_cart_container_header">
+                <Link to="/paymentportal1" className="mob_cart_container_header">
                   <AiOutlineShoppingCart className="mob_cart_icon_header" />
                   <p>Cart</p>
-                </div>
+                </Link>
                 <div className="mob_account_container_header">
                   <FaRegUserCircle className="mob_account_icon_header" />
                   <p>Account</p>
@@ -109,42 +136,46 @@ const Header = () => {
             </div>
 
             <div className="side_middle_section_header">
-              <Link to="/" className="side_middle_box_header">
+              <Link to="/" className="side_middle_box_header" onClick={() => setShow(false)}>
                 <p>Home</p>
                 <BiHome className="side_middle_icon_header" />
               </Link>
-              <Link to="/aboutus" className="side_middle_box_header">
+              <Link to="/aboutus" className="side_middle_box_header" onClick={() => setShow(false)}>
                 <p>About Us</p>
                 <FaUsers className="side_middle_icon_header" />
               </Link>
-              <Link to="/contactus" className="side_middle_box_header">
+              <Link to="/contactus" className="side_middle_box_header" onClick={() => setShow(false)}>
                 <p>Contact Us</p>
                 <RiContactsBook2Line className="side_middle_icon_header" />
               </Link>
             </div>
 
             <div className="side_bottom_section_header">
-              <Link to="/paymentportal1" className="side_bottom_box_header">
+              <div onClick={() => filterItems("birthday")} className="side_bottom_box_header">
                 <p>Birthday</p>
-              </Link>
-              <Link to="/paymentportal2" className="side_bottom_box_header">
+              </div>
+              <div onClick={() => filterItems("anniversary")} className="side_bottom_box_header">
                 <p>Anniversary</p>
-              </Link>
-              <Link to="/product" className="side_bottom_box_header">
+              </div>
+              <div onClick={() => filterItems("cake")} className="side_bottom_box_header">
                 <p>Cakes</p>
-              </Link>
-              <Link to="/products" className="side_bottom_box_header">
+              </div>
+              <div onClick={() => filterItems("flower")} className="side_bottom_box_header">
                 <p>Flowers</p>
-              </Link>
-              <Link to="/" className="side_bottom_box_header">
+              </div>
+              <div onClick={() => filterItems("personalised")} className="side_bottom_box_header">
                 <p>Personalised</p>
-              </Link>
-              <Link to="/" className="side_bottom_box_header">
+              </div>
+              <div onClick={() => filterItems("gift")} className="side_bottom_box_header">
                 <p>Gifts</p>
-              </Link>
+              </div>
             </div>
           </div>
         </div>
+
+        {
+          show  ? (<ProductCard4 products={products} />) : ("")
+        }
       </div>
     </div>
   );

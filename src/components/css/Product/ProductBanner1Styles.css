@@ -344,6 +344,7 @@
 
 .secondary_btn_productbanner1 {
   padding: 5px 20px;
+  text-decoration: none;
   background: #7d7f3c;
   border-radius: 5px;
   font-family: "Poppins";

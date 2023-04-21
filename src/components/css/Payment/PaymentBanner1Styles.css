@@ -358,6 +358,7 @@
 .primary_btn_paymentbanner1 {
   height: 42px;
   padding: 10px 25px;
+  text-decoration: none;
   border: none;
   background-color: var(--orange-color);
   border-radius: 16.1538px;

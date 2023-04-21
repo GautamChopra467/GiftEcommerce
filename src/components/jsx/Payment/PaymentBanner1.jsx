@@ -1,18 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TbMathGreater } from "react-icons/tb";
 import "../../css/Payment/PaymentBanner1Styles.css";
 import { CgTrash } from "react-icons/cg";
 import Payment1 from "../../../assets/payment1.png";
 import Payment2 from "../../../assets/payment2.png";
 import { Link } from "react-router-dom";
+import jsonFile from "../../../dummyData.json";
 
 const PaymentBanner1 = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const products2 = jsonFile.Orders;
+
+    setProducts(products2);
+  });
+
   return (
     <div className="main_container_paymentbanner1">
       <div className="sub_header_paymentbanner1">
-      <Link to="/">Home</Link>
-          <TbMathGreater className="greater_icon_aboutbanner1" />
-          <Link to="/paymentportal1">Payment Portal</Link>
+        <Link to="/">Home</Link>
+        <TbMathGreater className="greater_icon_aboutbanner1" />
+        <Link to="/paymentportal1">Payment Portal</Link>
       </div>
 
       <div className="main_box_paymentbanner1">
@@ -44,89 +53,50 @@ const PaymentBanner1 = () => {
 
           {/* ORDER DETAILS CONTAINER */}
           <div className="order_details_section_paymentbanner1">
-            <div className="order_box_paymentbanner1">
-              <div className="order_box_left_section_paymentbanner1">
-                <div className="order_box_image_box_paymentbanner1">
-                  <img src={Payment1} alt="item" />
-                  <div className="quantity_box_paymentbanner1">
-                    <div className="quantity_icon_paymentbanner1">
-                      <p>-</p>
+            {products &&
+              products.map((product) => (
+                <div key={product.productId} className="order_box_paymentbanner1">
+                  <div className="order_box_left_section_paymentbanner1">
+                    <div className="order_box_image_box_paymentbanner1">
+                      <img src={product.imageUrl} alt="item" />
+                      <div className="quantity_box_paymentbanner1">
+                        <div className="quantity_icon_paymentbanner1">
+                          <p>-</p>
+                        </div>
+                        <div className="number_icon_paymentbanner1">
+                          <p>1</p>
+                        </div>
+                        <div className="quantity_icon_paymentbanner1">
+                          <p>+</p>
+                        </div>
+                      </div>
                     </div>
-                    <div className="number_icon_paymentbanner1">
-                      <p>1</p>
+
+                    <div className="order_box_item_box_paymentbanner1">
+                      <h4>{product.productName}</h4>
+                      <p>
+                        Luxury brands are typically associated with high
+                        quality, prestige, exclusivity, and status. They command
+                        premium prices and offer a unique experience{" "}
+                      </p>
                     </div>
-                    <div className="quantity_icon_paymentbanner1">
-                      <p>+</p>
+                  </div>
+
+                  <div className="order_box_right_section_paymentbanner1">
+                    <div className="order_box_price_box_paymentbanner1">
+                      <h4>Delivery On</h4>
+                      <h5>Fri, 20 Apr, 2023</h5>
+                      <p>
+                        Standard Delivery, <span>Free</span>
+                      </p>
+                    </div>
+
+                    <div className="order_box_delete_box_paymentbanner1">
+                      <CgTrash className="delete_icon_paymentbanner1" />
                     </div>
                   </div>
                 </div>
-
-                <div className="order_box_item_box_paymentbanner1">
-                  <h4>Beautiful Rose Water Perfume</h4>
-                  <p>
-                    Luxury brands are typically associated with high quality,
-                    prestige, exclusivity, and status. They command premium
-                    prices and offer a unique experience{" "}
-                  </p>
-                </div>
-              </div>
-
-              <div className="order_box_right_section_paymentbanner1">
-                <div className="order_box_price_box_paymentbanner1">
-                  <h4>Delivery On</h4>
-                  <h5>Fri, 20 Apr, 2023</h5>
-                  <p>
-                    Standard Delivery, <span>Free</span>
-                  </p>
-                </div>
-
-                <div className="order_box_delete_box_paymentbanner1">
-                  <CgTrash className="delete_icon_paymentbanner1" />
-                </div>
-              </div>
-            </div>
-
-            <div className="order_box_paymentbanner1">
-              <div className="order_box_left_section_paymentbanner1">
-                <div className="order_box_image_box_paymentbanner1">
-                  <img src={Payment2} alt="item" />
-                  <div className="quantity_box_paymentbanner1">
-                    <div className="quantity_icon_paymentbanner1">
-                      <p>-</p>
-                    </div>
-                    <div className="number_icon_paymentbanner1">
-                      <p>1</p>
-                    </div>
-                    <div className="quantity_icon_paymentbanner1">
-                      <p>+</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="order_box_item_box_paymentbanner1">
-                  <h4>Beautiful Rose Water Perfume</h4>
-                  <p>
-                    Luxury brands are typically associated with high quality,
-                    prestige, exclusivity, and status. They command premium
-                    prices and offer a unique experience{" "}
-                  </p>
-                </div>
-              </div>
-
-              <div className="order_box_right_section_paymentbanner1">
-                <div className="order_box_price_box_paymentbanner1">
-                  <h4>Delivery On</h4>
-                  <h5>Fri, 20 Apr, 2023</h5>
-                  <p>
-                    Standard Delivery, <span>Free</span>
-                  </p>
-                </div>
-
-                <div className="order_box_delete_box_paymentbanner1">
-                  <CgTrash className="delete_icon_paymentbanner1" />
-                </div>
-              </div>
-            </div>
+              ))}
           </div>
 
           {/* PAYMENT FORM */}
@@ -183,7 +153,7 @@ const PaymentBanner1 = () => {
               </div>
 
               <div className="form_bottom_section_paymentbanner1">
-                <button className="primary_btn_paymentbanner1">SAVE</button>
+                <Link to="/paymentportal2" className="primary_btn_paymentbanner1">SAVE</Link>
               </div>
             </div>
           </div>

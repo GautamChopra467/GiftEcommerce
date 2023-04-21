@@ -20,6 +20,7 @@
     align-items: center;
     justify-content: center;
     grid-gap: 15px;
+    text-decoration: none;
   }
 
   .product_container_productcard3 p {
@@ -34,6 +35,7 @@ color: var(--black-color);
   .product_container_productcard3 img {
     width: 250px;
 height: 250px;
+border-radius: 50%;
   }
 
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TbMathGreater } from "react-icons/tb";
 import "../../css/Product/ProductBanner1Styles.css";
 import ProductCard2 from "./ProductCard2.jsx";
@@ -19,97 +19,125 @@ import Product13 from "../../../assets/products/products13.png";
 import Product14 from "../../../assets/products/products14.png";
 import Product15 from "../../../assets/products/products15.png";
 import Product16 from "../../../assets/products/products16.png";
+import jsonFile from "../../../dummyData.json";
 
 const ProductBanner2 = () => {
-  const products = [
-    {
-      name: "Gleaming Love Orchid Bouqet",
-      image: Product1,
-      price: 1299,
-    },
-    {
-      name: "Gleaming Love Orchid Bouqet",
-      image: Product2,
-      price: 1299,
-    },
-    {
-      name: "Gleaming Love Orchid Bouqet",
-      image: Product3,
-      price: 1299,
-    },
-    {
-      name: "Gleaming Love Orchid Bouqet",
-      image: Product4,
-      price: 1299,
-    },
-    {
-      name: "Gleaming Love Orchid Bouqet",
-      image: Product5,
-      price: 1299,
-    },
-    {
-      name: "Gleaming Love Orchid Bouqet",
-      image: Product6,
-      price: 1299,
-    },
-    {
-      name: "Gleaming Love Orchid Bouqet",
-      image: Product7,
-      price: 1299,
-    },
-    {
-      name: "Gleaming Love Orchid Bouqet",
-      image: Product8,
-      price: 1299,
-    },
-    {
-      name: "Gleaming Love Orchid Bouqet",
-      image: Product9,
-      price: 1299,
-    },
-    {
-      name: "Gleaming Love Orchid Bouqet",
-      image: Product10,
-      price: 1299,
-    },
-    {
-      name: "Gleaming Love Orchid Bouqet",
-      image: Product11,
-      price: 1299,
-    },
-    {
-      name: "Gleaming Love Orchid Bouqet",
-      image: Product12,
-      price: 1299,
-    },
-    {
-      name: "Gleaming Love Orchid Bouqet",
-      image: Product13,
-      price: 1299,
-    },
-    {
-      name: "Gleaming Love Orchid Bouqet",
-      image: Product14,
-      price: 1299,
-    },
-    {
-      name: "Gleaming Love Orchid Bouqet",
-      image: Product15,
-      price: 1299,
-    },
-    {
-      name: "Gleaming Love Orchid Bouqet",
-      image: Product16,
-      price: 1299,
-    },
-  ];
+  // const products = [
+  //   {
+  //     name: "Gleaming Love Orchid Bouqet",
+  //     image: Product1,
+  //     price: 1299,
+  //   },
+  //   {
+  //     name: "Gleaming Love Orchid Bouqet",
+  //     image: Product2,
+  //     price: 1299,
+  //   },
+  //   {
+  //     name: "Gleaming Love Orchid Bouqet",
+  //     image: Product3,
+  //     price: 1299,
+  //   },
+  //   {
+  //     name: "Gleaming Love Orchid Bouqet",
+  //     image: Product4,
+  //     price: 1299,
+  //   },
+  //   {
+  //     name: "Gleaming Love Orchid Bouqet",
+  //     image: Product5,
+  //     price: 1299,
+  //   },
+  //   {
+  //     name: "Gleaming Love Orchid Bouqet",
+  //     image: Product6,
+  //     price: 1299,
+  //   },
+  //   {
+  //     name: "Gleaming Love Orchid Bouqet",
+  //     image: Product7,
+  //     price: 1299,
+  //   },
+  //   {
+  //     name: "Gleaming Love Orchid Bouqet",
+  //     image: Product8,
+  //     price: 1299,
+  //   },
+  //   {
+  //     name: "Gleaming Love Orchid Bouqet",
+  //     image: Product9,
+  //     price: 1299,
+  //   },
+  //   {
+  //     name: "Gleaming Love Orchid Bouqet",
+  //     image: Product10,
+  //     price: 1299,
+  //   },
+  //   {
+  //     name: "Gleaming Love Orchid Bouqet",
+  //     image: Product11,
+  //     price: 1299,
+  //   },
+  //   {
+  //     name: "Gleaming Love Orchid Bouqet",
+  //     image: Product12,
+  //     price: 1299,
+  //   },
+  //   {
+  //     name: "Gleaming Love Orchid Bouqet",
+  //     image: Product13,
+  //     price: 1299,
+  //   },
+  //   {
+  //     name: "Gleaming Love Orchid Bouqet",
+  //     image: Product14,
+  //     price: 1299,
+  //   },
+  //   {
+  //     name: "Gleaming Love Orchid Bouqet",
+  //     image: Product15,
+  //     price: 1299,
+  //   },
+  //   {
+  //     name: "Gleaming Love Orchid Bouqet",
+  //     image: Product16,
+  //     price: 1299,
+  //   },
+  // ];
+
+  const [products, setProducts] = useState([]);
+
+  const getProducts = () => {
+    const products2 = jsonFile.Products;
+    setProducts(products2);
+  }
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  const LowToHigh = () => {
+    let products2 = [...products].sort((a, b) => {
+      return a.price - b.price;
+    });
+
+    setProducts(products2);
+  };
+
+  const HighToLow = () => {
+    let products2 = [...products].sort((a, b) => {
+      return b.price - a.price;
+    });
+
+    setProducts(products2);
+  };
 
   return (
     <div className="main_container_productbanner1">
       <div className="sub_header_productbanner1">
-      <Link to="/">Home</Link>
-          <TbMathGreater className="greater_icon_aboutbanner1" />
-          <Link to="/products">Best Selling for Today</Link>
+        <Link to="/">Home</Link>
+        <TbMathGreater className="greater_icon_aboutbanner1" />
+        <Link to="/products">Best Selling for Today</Link>
       </div>
 
       <div className="categories_main_container_productbanner1">
@@ -122,7 +150,7 @@ const ProductBanner2 = () => {
             <p>Sort By : </p>
             <div className="categories_box_productbanner1">
               <div className="category_box_productbanner1 active_box_productbanner1">
-                <p>Recommended</p>
+                <p onClick={getProducts}>Recommended</p>
               </div>
 
               <div className="categories_box_productbanner1">
@@ -133,13 +161,13 @@ const ProductBanner2 = () => {
 
               <div className="categories_box_productbanner1">
                 <div className="category_box_productbanner1">
-                  <p>Price: High-Low</p>
+                  <p onClick={HighToLow}>Price: High-Low</p>
                 </div>
               </div>
 
               <div className="categories_box_productbanner1">
                 <div className="category_box_productbanner1">
-                  <p>Price: Low-High</p>
+                  <p onClick={LowToHigh}>Price: Low-High</p>
                 </div>
               </div>
             </div>

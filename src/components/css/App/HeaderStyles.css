@@ -58,8 +58,6 @@
 }
 
 .desk_search_container_header input {
-  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.5),
-    inset 0 1px 0 0 rgba(0, 0, 0, 0.07);
   outline: none;
   border: none;
   width: 100%;
@@ -168,7 +166,7 @@ background: linear-gradient(90deg, rgba(195,169,255,1) 44%, rgba(255,255,255,1) 
   justify-content: space-between;
 }
 
-.desk_bottom_left_section_header a {
+.desk_bottom_left_section_header p {
   font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 17px;
@@ -179,9 +177,10 @@ background: linear-gradient(90deg, rgba(195,169,255,1) 44%, rgba(255,255,255,1) 
   text-align: center;
   text-decoration: none;
   position: relative;
+  cursor: pointer;
 }
 
-.desk_bottom_left_section_header a::before {
+.desk_bottom_left_section_header p::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -195,7 +194,7 @@ background: linear-gradient(90deg, rgba(195,169,255,1) 44%, rgba(255,255,255,1) 
   transition: transform 0.3s ease-in-out;
 }
 
-.desk_bottom_left_section_header a:hover::before {
+.desk_bottom_left_section_header p:hover::before {
   transform-origin: left;
   transform: scaleX(1);
 }
@@ -211,7 +210,9 @@ background: linear-gradient(90deg, rgba(195,169,255,1) 44%, rgba(255,255,255,1) 
 .desk_account_container_header {
   width: 48px;
   width: 48px;
+  text-decoration: none;
   border-radius: 50%;
+  color: var(--black-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -310,6 +311,7 @@ background: linear-gradient(90deg, rgba(195,169,255,1) 44%, rgba(255,255,255,1) 
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+  text-decoration: none;
 }
 
 .mob_cart_icon_header {
@@ -325,6 +327,7 @@ background: linear-gradient(90deg, rgba(195,169,255,1) 44%, rgba(255,255,255,1) 
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;
+  text-decoration: none;
   text-align: center;
   color: var(--white-color);
 }
@@ -351,8 +354,6 @@ background: linear-gradient(90deg, rgba(195,169,255,1) 44%, rgba(255,255,255,1) 
 }
 
 .mob_search_container_header input {
-  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.5),
-    inset 0 1px 0 0 rgba(0, 0, 0, 0.07);
   outline: none;
   border: none;
   width: 100%;
