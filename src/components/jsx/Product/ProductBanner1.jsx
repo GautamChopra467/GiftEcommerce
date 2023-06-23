@@ -5,66 +5,39 @@ import Item1 from "../../../assets/products/item1.png";
 import Item2 from "../../../assets/products/item2.png";
 import Item3 from "../../../assets/products/item3.png";
 import Item4 from "../../../assets/products/item4.png";
-import MainItem from "../../../assets/products/mainitem.png";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiHomeHeart } from "react-icons/bi";
 import { FaUserShield } from "react-icons/fa";
-import Product1 from "../../../assets/products/product1.png";
-import Product2 from "../../../assets/products/product2.png";
-import Product3 from "../../../assets/products/product3.png";
-import Product4 from "../../../assets/products/product4.png";
-import Product5 from "../../../assets/products/product5.png";
-import ProductCard1 from "./ProductCard1.jsx";
 import { Link } from "react-router-dom";
-import jsonFile from "../../../dummyData.json";
 import ProductCard4 from "./ProductCad4";
+import { getProducts, getProductById } from "../../../firebaseInstance";
+import dummyData from "../../../dummyData.json";
 
 const ProductBanner1 = ({ id }) => {
-//   const products = [
-//     {
-//       id: 1,
-//       name: "Luxe Love Orchids Bouquet With ",
-//       image: Product1,
-//       price: 1299,
-//     },
-//     {
-//       id: 2,
-//       name: "Luxe Love Orchids Bouquet With ",
-//       image: Product2,
-//       price: 1299,
-//     },
-//     {
-//       id: 3,
-//       name: "Luxe Love Orchids Bouquet With ",
-//       image: Product3,
-//       price: 1299,
-//     },
-//     {
-//       id: 4,
-//       name: "Luxe Love Orchids Bouquet With ",
-//       image: Product4,
-//       price: 1299,
-//     },
-//     {
-//       id: 5,
-//       name: "Luxe Love Orchids Bouquet With ",
-//       image: Product5,
-//       price: 1299,
-//     },
-//   ];
-
   const [products, setProducts] = useState([]);
-  const [product, setProduct] = useState({});
-
+  const [product, setProduct] = useState(dummyData["Products"][0]);
+  console.log(product);
   useEffect(() => {
-    const product2 = jsonFile.Products.find((obj) => {
-      return obj.docId === id;
-    });
-    setProduct(product2)
-
-    const products2 = jsonFile.Products;
-    setProducts(products2)
-  });
+    console.log(id);
+    async function fetchProducts() {
+      try {
+        const products = await getProducts();
+        setProducts(products);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    async function fetchProductById() {
+      try {
+        const product = await getProductById(id);
+        setProduct(product);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchProductById();
+    fetchProducts();
+  }, []);
 
   return (
     <div className="main_container_productbanner1">
@@ -110,21 +83,20 @@ const ProductBanner1 = ({ id }) => {
       </div>
 
       <div className="product_main_container_productbanner1">
-        {product !== undefined && (
+        {product && (
           <div className="product_container_productbanner1">
             <div className="product_image_section_productbanner1">
               <div className="product_first_section_productbanner1">
-                <img src={Item1} alt="item" />
-                <img src={Item2} alt="item" />
-                <img src={Item3} alt="item" />
-                <img src={Item4} alt="item" />
+                <img src={product.imgUrl[0]} alt="item" />
+                <img src={product.imgUrl[0]} alt="item" />
+                <img src={product.imgUrl[0]} alt="item" />
+                <img src={product.imgUrl[0]} alt="item" />
               </div>
 
               <div className="product_second_section_productbanner1">
                 {product.imgUrl && (
-                    <img src={product.imgUrl[0]} alt="mainitem" />
+                  <img src={product.imgUrl[0]} alt="mainitem" />
                 )}
-                
               </div>
             </div>
 
@@ -136,16 +108,14 @@ const ProductBanner1 = ({ id }) => {
                 </div>
 
                 <div className="product_third_section_top_middle_productbanner1">
-                  <p>
-                    {product.description}
-                  </p>
+                  <p>{product.description}</p>
                 </div>
 
                 <div className="product_third_section_top_lower_productbanner1">
                   <div className="rating_box_productbanner1">
                     <h6>{product.rating}</h6>
                   </div>
-                  <p>1954 Reviews</p>
+                  <p>{product.reviews_no}</p>
                 </div>
               </div>
 
@@ -157,9 +127,9 @@ const ProductBanner1 = ({ id }) => {
                     <p>inclusive of all taxes</p>
                   </div>
                   <h5>
-                    <s>&#x20B9;2899</s>
+                    <s>&#x20B9;{product.original_price}</s>
                   </h5>
-                  <h6>(30 % OFF)</h6>
+                  <h6>({product.discount} % OFF)</h6>
                 </div>
 
                 <div className="product_third_middle1_lower_section_productbanner1">
@@ -180,23 +150,14 @@ const ProductBanner1 = ({ id }) => {
                 </div>
               </div>
 
-              <div className="product_third_middle2_section_productbanner1">
-                <div className="product_third_middle2_upper_section_productbanner1">
-                  <img src={Item4} alt="item" />
-                  <p>1/2 Kg</p>
-                </div>
-
-                <div className="product_third_middle2_upper_section_productbanner1">
-                  <img src={Item2} alt="item" />
-                  <p>1 Kg</p>
-                </div>
-              </div>
-
               <div className="product_third_bottom_section_productbanner1">
                 <button className="primary_btn_productbanner1">
                   ADD TO CART
                 </button>
-                <Link to="/paymentportal1" className="secondary_btn_productbanner1">
+                <Link
+                  to="/paymentportal1"
+                  className="secondary_btn_productbanner1"
+                >
                   BUY NOW
                 </Link>
               </div>
@@ -210,53 +171,16 @@ const ProductBanner1 = ({ id }) => {
           <div className="description_top_section_productbanner1">
             <h4>Description</h4>
             <div className="line_productbanner1"></div>
-            <p>
-              Luxury brands are typically associated with high quality,
-              prestige, exclusivity, and status. They command premium prices and
-              offer a unique experience to their customers. Here are some
-              reasons why luxury brands are special and how they maintain
-              defensibility in the market: Luxury brands are typically
-              associated with high quality, prestige, exclusivity, and status.
-              They command premium prices and offer a unique experience to their
-              customers. Here are some reasons why luxury brands are special and
-              how they maintain defensibility in the market:
-            </p>
-            <ul>
-              <li>Cake Flavour- Truffle</li>
-              <li>Weight- Half Kg</li>
-              <li>Shape- Round</li>
-              <li>Serves- 4-6 People</li>
-              <li>Size- 6 inches in Diameter</li>
-            </ul>
+            <p>{product.description}</p>
           </div>
 
           <div className="description_top_section_productbanner1">
             <h4>Delivery Information</h4>
             <div className="line_productbanner1"></div>
             <ul>
-              <li>
-                Every cake we offer is handcrafted and since each chef has
-                his/her own way of baking and designing a cake, there might be
-                slight variation in the product in terms of design and shape.
-              </li>
-              <li>
-                The chosen delivery time is an estimate and depends on the
-                availability of the product and the destination to which you
-                want the product to be delivered.
-              </li>
-              <li>
-                Since cakes are perishable in nature, we attempt delivery of
-                your order only once. The delivery cannot be redirected to any
-                other address.
-              </li>
-              <li>
-                This product is hand delivered and will not be delivered along
-                with courier products.
-              </li>
-              <li>
-                Occasionally, substitutions of flavours/designs is necessary due
-                to temporary and/or regional unavailability issues
-              </li>
+              {product.delivery_instructions && product.delivery_instructions.map((i) => (
+                <li>{i}</li>
+              ))}
             </ul>
           </div>
 
@@ -264,24 +188,9 @@ const ProductBanner1 = ({ id }) => {
             <h4>Care Instructions</h4>
             <div className="line_productbanner1"></div>
             <ul>
-              <li>
-                Store cream cakes in a refrigerator. Fondant cakes should be
-                stored in an air conditioned environment.
-              </li>
-              <li>
-                Slice and serve the cake at room temperature and make sure it is
-                not exposed to heat.
-              </li>
-              <li>Use a serrated knife to cut a fondant cake.</li>
-              <li>
-                Sculptural elements and figurines may contain wire supports or
-                toothpicks or wooden skewers for support.
-              </li>
-              <li>
-                Please check the placement of these items before serving to
-                small children.
-              </li>
-              <li>The cake should be consumed within 24 hours.</li>
+              {product.care_instructions && product.care_instructions.map((i) => (
+                <li>{i}</li>
+              ))}
             </ul>
           </div>
         </div>

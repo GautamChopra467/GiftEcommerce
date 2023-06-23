@@ -8,22 +8,24 @@ import Image5 from "../../../assets/products/home5.png";
 import Image6 from "../../../assets/products/home6.png";
 import Image7 from "../../../assets/products/home7.png";
 import Image8 from "../../../assets/products/home8.png";
-import Image9 from "../../../assets/products/home9.png";
-import Image10 from "../../../assets/products/home10.png";
-import Image11 from "../../../assets/products/home11.png";
-import Image12 from "../../../assets/products/home12.png";
-import Image13 from "../../../assets/products/home13.png";
-import jsonFile from "../../../dummyData.json";
+import {getProducts} from "../../../firebaseInstance";
 import { Link } from "react-router-dom";
 
 const HomeBanner1 = () => {
   const [products, setProducts] = useState([]);
-  const [product, setProduct] = useState({});
-
   useEffect(() => {
-    const products2 = jsonFile.Products;
-    setProducts(products2);
-  });
+    async function fetchProducts() {
+      try {
+        const products = await getProducts();
+        setProducts(products);
+        console.log(products);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  
+    fetchProducts();
+  }, []);
 
   return (
     <div>

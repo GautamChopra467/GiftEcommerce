@@ -3,7 +3,6 @@ import "../../css/Product/ProductCard1Styles.css";
 import { Link } from "react-router-dom";
 
 const ProductCard4 = ({ products }) => {
-    console.log("Products " + products)
   return (
     <div className="product_list_main_container_productcard1">
       <div className="product_list_container_productcard1">
