@@ -53,9 +53,6 @@ const Header = ({ show, setShow }) => {
                   <GoSearch className="search_icon_header" />
                 </div>
               </div>
-              <div className="desk_top_middle_box_header">
-                <p>WISHLIST</p>
-              </div>
             </div>
 
             <div className="desk_top_right_section_header">
@@ -81,7 +78,7 @@ const Header = ({ show, setShow }) => {
               <p onClick={() => filterItems("gift")}>Gifts</p>
             </div>
 
-            <div className="desk_bottom_right_section_header">
+            {/* <div className="desk_bottom_right_section_header">
               <Link to="/paymentportal1" className="desk_cart_container_header">
                 <AiOutlineShoppingCart className="desk_cart_icon_header" />
                 <p>Cart</p>
@@ -90,7 +87,7 @@ const Header = ({ show, setShow }) => {
                 <FaRegUserCircle className="desk_account_icon_header" />
                 <p>Account</p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
