@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { TbMathGreater } from "react-icons/tb";
 import "../../css/Payment/PaymentBanner1Styles.css";
 import { CgTrash } from "react-icons/cg";
-import Payment1 from "../../../assets/payment1.png";
-import Payment2 from "../../../assets/payment2.png";
 import { Link } from "react-router-dom";
 import jsonFile from "../../../dummyData.json";
 
@@ -12,7 +10,6 @@ const PaymentBanner1 = () => {
 
   useEffect(() => {
     const products2 = jsonFile.Orders;
-
     setProducts(products2);
   });
 

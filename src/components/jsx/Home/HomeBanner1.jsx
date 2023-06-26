@@ -8,7 +8,7 @@ import Image5 from "../../../assets/products/home5.png";
 import Image6 from "../../../assets/products/home6.png";
 import Image7 from "../../../assets/products/home7.png";
 import Image8 from "../../../assets/products/home8.png";
-import {getProducts} from "../../../firebaseInstance";
+import { getProducts } from "../../../firebaseInstance";
 import { Link } from "react-router-dom";
 
 const HomeBanner1 = () => {
@@ -23,7 +23,7 @@ const HomeBanner1 = () => {
         console.log(error);
       }
     }
-  
+
     fetchProducts();
   }, []);
 
@@ -31,7 +31,7 @@ const HomeBanner1 = () => {
     <div>
       <div className="main_container_homebanner1">
         <div className="top_section_homebanner1">
-          <div className="top_detail_box_homebanner1">
+          <Link to="/products/cake" className="top_detail_box_homebanner1">
             <div className="top_detail_left_section_homebanner1">
               <h4>Delicious Cakes</h4>
               <p>Celebrate Sweet Moments</p>
@@ -42,9 +42,9 @@ const HomeBanner1 = () => {
             <div className="top_detail_right_section_homebanner1">
               <img src={Image1} alt="gift" />
             </div>
-          </div>
+          </Link>
 
-          <div className="top_detail_box_homebanner1">
+          <Link to="/products/flowers" className="top_detail_box_homebanner1">
             <div className="top_detail_left_section_homebanner1">
               <h4>Fruits & Flowers</h4>
               <p>Inspired by nature’s best</p>
@@ -55,11 +55,11 @@ const HomeBanner1 = () => {
             <div className="top_detail_right_section_homebanner1">
               <img src={Image2} alt="gift" />
             </div>
-          </div>
+          </Link>
         </div>
 
         <div className="middle1_section_homebanner1">
-          <div className="middle1_detail_box_homebanner1">
+          <Link to="/products/gift" className="middle1_detail_box_homebanner1">
             <div className="middle1_detail_upper_section_homebanner1">
               <h4>Gift Items</h4>
               <p>Send this to someone you love</p>
@@ -68,9 +68,12 @@ const HomeBanner1 = () => {
             <div className="middle1_detail_lower_section1_homebanner1">
               <img src={Image3} alt="product" />
             </div>
-          </div>
+          </Link>
 
-          <div className="middle1_detail_box_homebanner1">
+          <Link
+            to="/products/birthday"
+            className="middle1_detail_box_homebanner1"
+          >
             <div className="middle1_detail_upper_section_homebanner1">
               <h4>Birthday Bash Gifts</h4>
               <p>Birthday Bash</p>
@@ -79,9 +82,12 @@ const HomeBanner1 = () => {
             <div className="middle1_detail_lower_section2_homebanner1">
               <img src={Image4} alt="product" />
             </div>
-          </div>
+          </Link>
 
-          <div className="middle1_detail_box_homebanner1">
+          <Link
+            to="/products/customise"
+            className="middle1_detail_box_homebanner1"
+          >
             <div className="middle1_detail_upper_section_homebanner1">
               <h4>Customised Goodies</h4>
               <p>Send this to someone you love</p>
@@ -90,18 +96,21 @@ const HomeBanner1 = () => {
             <div className="middle1_detail_lower_section3_homebanner1">
               <img src={Image5} alt="product" />
             </div>
-          </div>
+          </Link>
 
-          <div className="middle1_detail_box_homebanner1">
+          <Link
+            to="/products/aniversary"
+            className="middle1_detail_box_homebanner1"
+          >
             <div className="middle1_detail_upper_section_homebanner1">
-              <h4>Vocal for Local</h4>
-              <p>Shop by Local</p>
+              <h4>Aniversary</h4>
+              <p>Celebrate Your Journey of Love</p>
             </div>
 
             <div className="middle1_detail_lower_section4_homebanner1">
-              <img src={Image6} alt="product" />
+              <img src={Image7} alt="product" />
             </div>
-          </div>
+          </Link>
         </div>
 
         <div className="middle2_section_homebanner1">
@@ -116,44 +125,16 @@ const HomeBanner1 = () => {
           <div className="bottom_first_section_homebanner1">
             <h4>Thoughtfully Curated Gifts</h4>
           </div>
-
-          <div className="bottom_second_section_homebanner1">
-            <div className="top_detail_box_homebanner1">
-              <div className="top_detail_left_section_homebanner1">
-                <h4>Anniversary Gifts</h4>
-                <p>Celebrate Your Journey of Love</p>
-
-                <button className="primary_btn_homebanner1">BUY NOW</button>
-              </div>
-
-              <div className="top_detail_right_section_homebanner1">
-                <img src={Image7} alt="gift" />
-              </div>
-            </div>
-
-            <div className="top_detail_box_homebanner1">
-              <div className="top_detail_left_section_homebanner1">
-                <h4>Convey Best Wishes</h4>
-                <p>Wish them success & happiness</p>
-
-                <button className="primary_btn_homebanner1">SEND NOW</button>
-              </div>
-
-              <div className="top_detail_right_section_homebanner1">
-                <img src={Image8} alt="gift" />
-              </div>
-            </div>
-          </div>
-
           <div className="bottom_third_section_homebanner1">
             {products.map((product) => (
-              <Link to={`/product/${product.docId}`} className="bottom_third_detail_box_homebanner1">
+              <Link
+                to={`/product/${product.docId}`}
+                className="bottom_third_detail_box_homebanner1"
+              >
                 <div className="bottom_third_detail_image_box_homebanner1">
                   <img src={product.imgUrl[0]} alt="product" />
                 </div>
-                <p>
-                  {product.description}
-                </p>
+                <p>{product.description}</p>
               </Link>
             ))}
           </div>

@@ -6,20 +6,13 @@ import AboutBanner2 from "../components/jsx/AboutUs/AboutBanner2";
 import Footer from "../components/jsx/App/Footer";
 
 const Products = () => {
-  const [show, setShow] = useState(false);
   return (
     <div>
-      <Header show={show} setShow={setShow} />
-      {show ? (
-        ""
-      ) : (
-        <>
-          <ProductBanner2 />
-          <SalesBanner1 />
-          <AboutBanner2 />
-          <Footer />
-        </>
-      )}
+      <Header />
+      <ProductBanner2 />
+      <SalesBanner1 />
+      <AboutBanner2 />
+      <Footer />
     </div>
   );
 };

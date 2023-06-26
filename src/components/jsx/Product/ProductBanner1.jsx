@@ -1,28 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { TbMathGreater, TbMoodSmileDizzy } from "react-icons/tb";
 import "../../css/Product/ProductBanner1Styles.css";
-import Item1 from "../../../assets/products/item1.png";
-import Item2 from "../../../assets/products/item2.png";
-import Item3 from "../../../assets/products/item3.png";
-import Item4 from "../../../assets/products/item4.png";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiHomeHeart } from "react-icons/bi";
 import { FaUserShield } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ProductCard4 from "./ProductCad4";
-import { getProducts, getProductById } from "../../../firebaseInstance";
+import {
+  getProducts,
+  getProductById,
+  getCartItems,
+  updateCartItemInDatabase,
+  addToCart,
+  auth
+} from "../../../firebaseInstance";
 import dummyData from "../../../dummyData.json";
 
 const ProductBanner1 = ({ id }) => {
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState(dummyData["Products"][0]);
-  console.log(product);
+  const [qty, setQty] = useState(product.qty);
+  const [isCartButtonDisabled, setCartButtonDisabled] = useState(false);
+
   useEffect(() => {
-    console.log(id);
+    console.log(auth.currentUser)
     async function fetchProducts() {
       try {
         const products = await getProducts();
         setProducts(products);
+        console.log(products)
       } catch (error) {
         console.log(error);
       }
@@ -31,13 +37,50 @@ const ProductBanner1 = ({ id }) => {
       try {
         const product = await getProductById(id);
         setProduct(product);
+        console.log(product)
       } catch (error) {
         console.log(error);
       }
     }
     fetchProductById();
     fetchProducts();
-  }, []);
+  },[id]);
+  const increaseQty = () => {
+    const userId = auth.currentUser.userId;
+    const updatedQty = qty + 1;
+    setQty(updatedQty);
+    updateCartItemInDatabase(userId, { ...product, qty: updatedQty });
+  };
+
+  const decreaseQty = () => {
+    if (qty > 0) {
+      const userId = auth.currentUser.userId;
+      const updatedQty = qty - 1;
+      setQty(updatedQty);
+      updateCartItemInDatabase(userId, { ...product, qty: updatedQty });
+    }
+  };
+
+  const addItemsToCart = async () => {
+    setCartButtonDisabled(true);
+    const userId = auth.currentUser.userId;
+    const cartItems = await getCartItems(userId);
+    const existingCartItem = cartItems.find((item) => item.productId === id);
+
+    if (existingCartItem) {
+      const updatedCartItem = {
+        ...existingCartItem,
+        quantity: existingCartItem.quantity + 1,
+      };
+      await updateCartItemInDatabase(userId, updatedCartItem);
+    } else {
+      const newCartItem = {
+        productId: id,
+        quantity: 1,
+      };
+      await addToCart(userId, newCartItem);
+    }
+  };
 
   return (
     <div className="main_container_productbanner1">
@@ -151,9 +194,15 @@ const ProductBanner1 = ({ id }) => {
               </div>
 
               <div className="product_third_bottom_section_productbanner1">
-                <button className="primary_btn_productbanner1">
-                  ADD TO CART
-                </button>
+                {qty > 0 ? (
+                  <div>
+                    <button onClick={decreaseQty} className="primary_btn_productbanner1">-</button>
+                    <button onClick={increaseQty} className="primary_btn_productbanner1">+</button>
+                  </div>
+                ) : (
+                  <button onClick={increaseQty} className="primary_btn_productbanner1">Add to Cart</button>
+                )}
+
                 <Link
                   to="/paymentportal1"
                   className="secondary_btn_productbanner1"
@@ -178,9 +227,8 @@ const ProductBanner1 = ({ id }) => {
             <h4>Delivery Information</h4>
             <div className="line_productbanner1"></div>
             <ul>
-              {product.delivery_instructions && product.delivery_instructions.map((i) => (
-                <li>{i}</li>
-              ))}
+              {product.delivery_instructions &&
+                product.delivery_instructions.map((i) => <li>{i}</li>)}
             </ul>
           </div>
 
@@ -188,9 +236,8 @@ const ProductBanner1 = ({ id }) => {
             <h4>Care Instructions</h4>
             <div className="line_productbanner1"></div>
             <ul>
-              {product.care_instructions && product.care_instructions.map((i) => (
-                <li>{i}</li>
-              ))}
+              {product.care_instructions &&
+                product.care_instructions.map((i) => <li>{i}</li>)}
             </ul>
           </div>
         </div>

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { TbMathGreater } from "react-icons/tb";
 import "../../css/Payment/PaymentBanner1Styles.css";
 import { CgTrash } from "react-icons/cg";
-import Payment1 from "../../../assets/payment1.png";
-import Payment2 from "../../../assets/payment2.png";
 import { HiOutlinePencil } from "react-icons/hi";
 import Pay1 from "../../../assets/pay1.png";
 import Pay2 from "../../../assets/pay2.png";
